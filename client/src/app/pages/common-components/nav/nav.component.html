@@ -1,0 +1,131 @@
+<!-- <p-button
+    [ngStyle]="{
+      background: 'var(--surface-0)',
+      visibility: (authService.user$ | async) ? 'visible' : 'hidden'
+    }"
+    class="border-round-sm ml-3 border-1 border-solid border-200"
+    [icon]="
+      !(sidebarService.isLeftSidebarOpen$ | async)
+        ? 'bi bi-arrow-left-circle-fill'
+        : 'bi bi-arrow-right-circle-fill'
+    "
+    (click)="sidebarService.toggleSidebar()"
+    severity="contrast"
+    [text]="true"
+  ></p-button> -->
+
+<p-menubar [model]="items">
+  <p-button
+    [ngStyle]="{
+      background: 'var(--surface-0)',
+      visibility: (authService.user$ | async) ? 'visible' : 'hidden'
+    }"
+    class="border-round-sm ml-3 border-1 border-solid border-200"
+    [icon]="
+      !(sidebarService.isLeftSidebarOpen$ | async)
+        ? 'bi bi-arrow-left-circle-fill'
+        : 'bi bi-arrow-right-circle-fill'
+    "
+    (click)="sidebarService.toggleSidebar()"
+    severity="contrast"
+    [text]="true"
+  ></p-button>
+  <ng-template pTemplate="item" let-item>
+    <ng-container *ngIf="item.route; else urlRef">
+      <a [routerLink]="item.route" class="p-menuitem-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    </ng-container>
+    <ng-template #urlRef>
+      <a
+        *ngIf="item.url; else noLink"
+        [href]="item.url"
+        class="p-menuitem-link"
+      >
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    </ng-template>
+    <ng-template #noLink>
+      <div class="p-menuitem-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </div>
+    </ng-template>
+  </ng-template>
+  <p-button
+    severity="contrast"
+    [rounded]="true"
+    icon="pi pi-moon"
+    (click)="toggleTheme()"
+    class="p-button-rounded p-button-text mr-2"
+  ></p-button>
+  <p-avatar
+    icon="bi bi-person"
+    class="mt-0 mb-0 mr-5"
+    size="normal"
+    shape="circle"
+    (click)="popover.toggle($event)"
+  />
+</p-menubar>
+
+<p-popover #popover class="custom-overlay">
+  <div *ngIf="authService.user$ | async as user; else Login">
+    <h4>{{ user.firstName || "-" }} {{ user.lastName || "-" }}</h4>
+    <p style="color: var(--bluegray-400)" class="mb-2 text-sm">
+      {{ user.email || "-" }}
+    </p>
+
+    <div class="flex flex-column gap-1">
+      <p-button
+        label="Home"
+        icon="bi bi-arrow-90deg-left"
+        severity="secondary"
+        routerLink="/home"
+        routerLinkActive="active"
+      />
+
+      <p-button
+        label="Dashboard"
+        icon="bi bi-speedometer2"
+        severity="secondary"
+        routerLink="/dashboard"
+        routerLinkActive="active"
+      />
+
+      <p-button
+        label="Censimento"
+        icon="bi bi-wallet"
+        severity="secondary"
+        routerLink="/dashboard/billing"
+        routerLinkActive="active"
+      />
+
+      <p-button
+        label="Scheda Medica"
+        icon="bi bi-file-earmark-medical"
+        severity="secondary"
+        routerLink="/dashboard/scheda-medica"
+        routerLinkActive="active"
+      />
+
+      <p-button
+        label="Log Out"
+        icon="bi bi-box-arrow-left"
+        severity="contrast"
+        (click)="onLogout()"
+      />
+    </div>
+  </div>
+</p-popover>
+<ng-template #Login>
+  <h4 class="mb-2">Benvenuto</h4>
+  <p-button
+    label="Log in"
+    icon="bi bi-box-arrow-right"
+    severity="secondary"
+    routerLink="/auth/login"
+    routerLinkActive="active"
+  />
+</ng-template>

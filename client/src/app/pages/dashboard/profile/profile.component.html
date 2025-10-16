@@ -1,0 +1,118 @@
+<div class="container">
+  <h2 class="mb-4">Il tuo profilo</h2>
+
+  <form
+    [formGroup]="profileForm"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-column max-w-15rem gap-3"
+  >
+    <div class="flex flex-column gap-1">
+      <label for="firstname">First Name*</label>
+      <input
+        pInputText
+        id="firstname"
+        placeholder="First Name"
+        formControlName="firstname"
+        [class.is-invalid]="
+          profileForm.get('firstname')?.invalid &&
+          profileForm.get('firstname')?.touched
+        "
+      />
+      <small
+        *ngIf="
+          profileForm.get('firstname')?.invalid &&
+          profileForm.get('firstname')?.touched
+        "
+        class="invalid-feedback"
+      >
+        First name is required
+      </small>
+    </div>
+
+    <div class="flex flex-column gap-1">
+      <label for="lastname">Last Name*</label>
+      <input
+        pInputText
+        id="lastname"
+        placeholder="Last Name"
+        formControlName="lastname"
+        [class.is-invalid]="
+          profileForm.get('lastname')?.invalid &&
+          profileForm.get('lastname')?.touched
+        "
+      />
+      <small
+        *ngIf="
+          profileForm.get('lastname')?.invalid &&
+          profileForm.get('lastname')?.touched
+        "
+        class="invalid-feedback"
+      >
+        Last name is required
+      </small>
+    </div>
+
+    <div class="flex flex-column gap-1">
+      <label for="address">Address*</label>
+      <input
+        pInputText
+        id="address"
+        placeholder="Address"
+        formControlName="address"
+        [class.is-invalid]="
+          profileForm.get('address')?.invalid &&
+          profileForm.get('address')?.touched
+        "
+      />
+      <small
+        *ngIf="
+          profileForm.get('address')?.invalid &&
+          profileForm.get('address')?.touched
+        "
+        class="invalid-feedback"
+      >
+        Address is required
+      </small>
+    </div>
+
+    <div class="flex flex-column gap-1">
+      <label for="phone">Phone Number*</label>
+      <input
+        pInputText
+        id="phone"
+        placeholder="Phone Number"
+        formControlName="phone"
+        [class.is-invalid]="
+          profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched
+        "
+      />
+      <small
+        *ngIf="
+          profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched
+        "
+        class="invalid-feedback"
+      >
+        Enter a valid 10-digit phone number
+      </small>
+    </div>
+
+    <p-checkbox
+      label="Join Our Newsletter"
+      name="accept_newsletter"
+    ></p-checkbox>
+
+    <div *ngIf="showNotification">
+      <div class="alert alert-success mb-0">
+        Your profile has been successfully updated!
+      </div>
+    </div>
+
+    <p-button
+      label="Save"
+      type="submit"
+      icon="pi pi-user"
+      severity="secondary"
+      [disabled]="loading || profileForm.invalid"
+    ></p-button>
+  </form>
+</div>

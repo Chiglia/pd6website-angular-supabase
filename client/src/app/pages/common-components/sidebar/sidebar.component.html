@@ -1,0 +1,42 @@
+<div class="flex flex-column gap-3 p-4">
+  <p-button
+    label="Home"
+    icon="bi bi-arrow-90deg-left"
+    severity="secondary"
+    routerLink="/home"
+    routerLinkActive="active"
+  />
+
+  <p-button
+    label="Dashboard"
+    icon="bi bi-speedometer2"
+    severity="secondary"
+    routerLink="/dashboard"
+    routerLinkActive="active"
+  />
+
+  <p-button
+    label="Censimento"
+    icon="bi bi-wallet"
+    severity="secondary"
+    routerLink="/dashboard/billing"
+    routerLinkActive="active"
+  />
+
+  <p-button
+    label="Scheda Medica"
+    icon="bi bi-file-earmark-medical"
+    severity="secondary"
+    routerLink="/dashboard/scheda-medica"
+    routerLinkActive="active"
+  />
+
+  <p-button
+    [appHasRole]="[UserRole.ADMIN, UserRole.OWNER]"
+    label="Iscritti"
+    icon="bi bi-file-earmark-medical"
+    severity="secondary"
+    routerLink="/dashboard/iscritti"
+    routerLinkActive="active"
+  />
+</div>

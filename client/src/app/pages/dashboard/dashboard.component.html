@@ -1,0 +1,18 @@
+<div class="dashboard-layout">
+  <div
+    class="dashboard-layout__side"
+    [class.not-open]="sidebarService.isLeftSidebarOpen$ | async"
+  >
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="dashboard-layout__nav">
+    <app-nav></app-nav>
+  </div>
+
+  <main class="dashboard-layout__main">
+    <ng-content select="[mainContent]">
+      <router-outlet></router-outlet>
+    </ng-content>
+  </main>
+</div>

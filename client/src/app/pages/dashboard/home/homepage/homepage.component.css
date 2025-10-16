@@ -1,0 +1,9 @@
+.ascii-art {
+  font-family: monospace;
+  line-height: 2.2px;
+  font-size: 2px;
+  white-space: pre;
+  overflow-x: auto;
+  color: white;
+  background-color: black;
+}

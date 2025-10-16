@@ -1,0 +1,28 @@
+<div class="card">
+  <p-tabs value="0">
+    <p-tablist>
+      <p-tab value="0">ATTESA</p-tab>
+      <p-tab value="1">LC</p-tab>
+      <p-tab value="2">EG</p-tab>
+      <p-tab value="2">RS</p-tab>
+      <p-tab value="2">COCA</p-tab>
+    </p-tablist>
+    <p-tabpanels>
+      <p-tabpanel value="0">
+        <app-attesa></app-attesa>
+      </p-tabpanel>
+      <p-tabpanel value="1">
+        <app-branche [brancaType]="UserBranca.LC"></app-branche>
+      </p-tabpanel>
+      <p-tabpanel value="2">
+        <app-branche [brancaType]="UserBranca.EG"></app-branche>
+      </p-tabpanel>
+      <p-tabpanel value="2">
+        <app-branche [brancaType]="UserBranca.RS"></app-branche>
+      </p-tabpanel>
+      <p-tabpanel value="2">
+        <app-branche [brancaType]="UserBranca.COCA"></app-branche>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+</div>

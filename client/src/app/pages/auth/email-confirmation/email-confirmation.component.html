@@ -1,0 +1,22 @@
+<div class="col-lg-7 text-center">
+  <div
+    *ngIf="loading; else notLoading"
+    class="spinner-border mx-auto"
+    style="width: 3rem; height: 3rem"
+  ></div>
+  <ng-template #notLoading>
+    <div *ngIf="inError; else notInError">
+      <p class="fs-5 mb-0">
+        Looks like we're facing a hiccup that's stopping us from confirming your
+        email right now.
+      </p>
+    </div>
+    <ng-template #notInError>
+      <h1 class="display-5 fw-bold lh-1 mb-3">Email confirmed successfully!</h1>
+      <p class="fs-5">
+        Welcome on board, you'll be redirected to the login page briefly.
+      </p>
+      <p class="fs-3 mb-0">{{ countdown }}</p>
+    </ng-template>
+  </ng-template>
+</div>

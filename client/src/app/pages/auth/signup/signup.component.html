@@ -1,0 +1,255 @@
+<form [formGroup]="formStep1" *ngIf="activeTab === 1">
+  <div class="d-grid gap-2 mb-3">
+    <input
+      type="email"
+      id="email"
+      placeholder="Email address*"
+      class="form-control"
+      formControlName="email"
+      [class.is-invalid]="
+        formStep1.controls['email'].invalid &&
+        formStep1.controls['email'].touched
+      "
+    />
+    <div
+      *ngIf="
+        formStep1.controls['email'].invalid &&
+        formStep1.controls['email'].touched
+      "
+      class="invalid-feedback"
+    >
+      Invalid email address
+    </div>
+
+    <input
+      type="email"
+      id="confirmEmail"
+      placeholder="Confirm Email*"
+      class="form-control"
+      formControlName="confirmEmail"
+      [class.is-invalid]="
+        formStep1.get('confirmEmail')?.invalid &&
+        formStep1.get('confirmEmail')?.touched
+      "
+    />
+    <div
+      *ngIf="formStep1.errors?.['emailsMismatch'] && formStep1.get('confirmEmail')?.touched"
+      class="invalid-feedback"
+    >
+      Emails do not match
+    </div>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password*"
+      class="form-control"
+      formControlName="password"
+      [class.is-invalid]="
+        formStep1.controls['password'].invalid &&
+        formStep1.controls['password'].touched
+      "
+    />
+    <div
+      *ngIf="
+        formStep1.controls['password'].invalid &&
+        formStep1.controls['password'].touched
+      "
+      class="invalid-feedback"
+    >
+      Password must be at least 6 characters long
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="form-check mb-0">
+      <input
+        class="form-check-input me-2"
+        type="checkbox"
+        value=""
+        id="form2Example3"
+      />
+      <label class="form-check-label" for="form2Example3"> Remember me </label>
+    </div>
+    <a routerLink="/auth/forgot-password" class="text-body">Forgot password?</a>
+  </div>
+
+  <button
+    class="btn btn-primary"
+    (click)="nextStep()"
+    [disabled]="formStep1.invalid"
+  >
+    Next
+  </button>
+  <p class="small fw-bold mt-2 pt-1 mb-0">
+    Already have an account?
+    <a routerLink="/auth/login" class="link-danger">Login</a>
+  </p>
+</form>
+
+<form [formGroup]="formStep2" *ngIf="activeTab === 2">
+  <div class="d-grid gap-2 mb-3">
+    <input
+      type="text"
+      id="firstName"
+      placeholder="First Name*"
+      class="form-control"
+      formControlName="firstName"
+      [class.is-invalid]="
+        formStep2.get('firstName')?.invalid &&
+        formStep2.get('firstName')?.touched
+      "
+    />
+    <div
+      *ngIf="
+        formStep2.get('firstName')?.invalid &&
+        formStep2.get('firstName')?.touched
+      "
+      class="invalid-feedback"
+    >
+      First name is required
+    </div>
+
+    <input
+      type="text"
+      id="lastName"
+      placeholder="Last Name*"
+      class="form-control"
+      formControlName="lastName"
+      [class.is-invalid]="
+        formStep2.get('lastName')?.invalid && formStep2.get('lastName')?.touched
+      "
+    />
+    <div
+      *ngIf="
+        formStep2.get('lastName')?.invalid && formStep2.get('lastName')?.touched
+      "
+      class="invalid-feedback"
+    >
+      Last name is required
+    </div>
+
+    <input
+      type="text"
+      id="city"
+      placeholder="City*"
+      class="form-control"
+      formControlName="city"
+      [class.is-invalid]="
+        formStep2.get('city')?.invalid && formStep2.get('city')?.touched
+      "
+    />
+    <div
+      *ngIf="formStep2.get('city')?.invalid && formStep2.get('city')?.touched"
+      class="invalid-feedback"
+    >
+      City is required
+    </div>
+
+    <input
+      type="text"
+      id="address"
+      placeholder="Address*"
+      class="form-control"
+      formControlName="address"
+      [class.is-invalid]="
+        formStep2.get('address')?.invalid && formStep2.get('address')?.touched
+      "
+    />
+    <div
+      *ngIf="
+        formStep2.get('address')?.invalid && formStep2.get('address')?.touched
+      "
+      class="invalid-feedback"
+    >
+      Address is required
+    </div>
+
+    <input
+      type="text"
+      id="cap"
+      placeholder="CAP*"
+      class="form-control"
+      formControlName="cap"
+      [class.is-invalid]="
+        formStep2.get('cap')?.invalid && formStep2.get('cap')?.touched
+      "
+    />
+    <div
+      *ngIf="formStep2.get('cap')?.invalid && formStep2.get('cap')?.touched"
+      class="invalid-feedback"
+    >
+      Enter a valid 5-digit CAP
+    </div>
+
+    <input
+      type="text"
+      id="phoneNumber"
+      placeholder="Phone Number*"
+      class="form-control"
+      formControlName="phoneNumber"
+      [class.is-invalid]="
+        formStep2.get('phoneNumber')?.invalid &&
+        formStep2.get('phoneNumber')?.touched
+      "
+    />
+    <div
+      *ngIf="
+        formStep2.get('phoneNumber')?.invalid &&
+        formStep2.get('phoneNumber')?.touched
+      "
+      class="invalid-feedback"
+    >
+      Enter a valid 10-digit phone number
+    </div>
+  </div>
+
+  <button class="btn btn-secondary me-2" (click)="previousStep()">Back</button>
+  <button
+    class="btn btn-primary"
+    (click)="nextStep()"
+    [disabled]="formStep2.invalid"
+  >
+    Next
+  </button>
+</form>
+
+<form [formGroup]="formStep3" *ngIf="activeTab === 3">
+  <div class="form-check mb-3">
+    <input
+      type="checkbox"
+      id="acceptPrivacy"
+      class="form-check-input"
+      formControlName="acceptPrivacy"
+    />
+    <label for="acceptPrivacy" class="form-check-label"
+      >I accept the privacy policy</label
+    >
+  </div>
+
+  <div class="form-check mb-3">
+    <input
+      type="checkbox"
+      id="subscribeNewsletter"
+      class="form-check-input"
+      formControlName="subscribeNewsletter"
+    />
+    <label for="subscribeNewsletter" class="form-check-label"
+      >Subscribe to the newsletter</label
+    >
+  </div>
+  <div *ngIf="showNotification" class="mt-4">
+    <div class="alert alert-success">
+      We've sent you an email with a confirm link. Make sure to also check your
+      spam folder.
+    </div>
+  </div>
+  <button class="btn btn-secondary me-2" (click)="previousStep()">Back</button>
+  <button
+    class="btn btn-success"
+    (click)="submit()"
+    [disabled]="formStep3.invalid"
+  >
+    Submit
+  </button>
+</form>

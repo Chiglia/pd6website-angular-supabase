@@ -1,0 +1,8 @@
+::ng-deep p-avatar {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+::ng-deep p-menubar {
+  position: relative;
+}
